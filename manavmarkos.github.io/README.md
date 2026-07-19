@@ -1,1 +1,0 @@
-# manavmarkos.github.io
