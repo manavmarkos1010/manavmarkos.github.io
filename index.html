@@ -36,7 +36,7 @@
 
     a{ color:inherit; }
 
-    /* ---------- Nav Bar ---------- */
+    /* ---------- Nav ---------- */
     nav{
         position:fixed;
         top:0; left:0; right:0;
@@ -172,7 +172,89 @@
         outline-offset:2px;
     }
 
-    /* ---------- MAIN ---------- */
+    /* ---------- Launcher overlays ---------- */
+    .panel-toggle{ display:none; }
+
+    .panel{
+        position:fixed;
+        inset:0;
+        display:flex;
+        flex-direction:column;
+        background:var(--bg);
+        opacity:0;
+        pointer-events:none;
+        transform:scale(1.02);
+        transition:opacity .25s ease, transform .25s ease;
+        z-index:300;
+    }
+
+    .panel-toggle:checked + .panel{
+        opacity:1;
+        pointer-events:auto;
+        transform:scale(1);
+    }
+
+    .panel-bar{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:1.1rem 1.75rem;
+        border-bottom:1px solid var(--line);
+        flex-shrink:0;
+    }
+
+    .panel-label{
+        font-size:.85rem;
+        color:var(--muted);
+        letter-spacing:.02em;
+    }
+
+    .panel-close{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:34px;
+        height:34px;
+        background:none;
+        border:1px solid var(--line);
+        border-radius:6px;
+        color:var(--fg);
+        font-size:1.05rem;
+        cursor:pointer;
+        transition:border-color .15s ease;
+    }
+
+    .panel-close:hover,
+    .panel-close:focus-visible{
+        border-color:var(--accent);
+        outline:none;
+    }
+
+    .panel-body{
+        flex:1;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        padding:2rem;
+    }
+
+    .panel-body h2{
+        font-size:2rem;
+        letter-spacing:-.02em;
+        margin-bottom:.3em;
+    }
+
+    .panel-body p{
+        color:var(--muted);
+        font-size:1rem;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+        .panel{ transition:none; }
+    }
+
+    /* ---------- Hero ---------- */
     main{
         flex:1;
         display:flex;
@@ -194,7 +276,7 @@
         letter-spacing:.01em;
     }
 
-    /* ---------- Quick Dock ---------- */
+    /* ---------- Quick-select dock ---------- */
     .dock-wrap{
         position:fixed;
         left:0; right:0;
@@ -281,7 +363,7 @@
         transform:translateX(-50%) translateY(0);
     }
 
-    /* ---------- Light Theme ---------- */
+    /* ---------- Light theme override ---------- */
     body.light{
         --bg:#f4f4f2;
         --fg:#111111;
@@ -308,9 +390,9 @@
 
 <nav>
     <div class="launchers" role="group" aria-label="Quick launch">
-        <a class="launcher" href="#" title="Coming soon" aria-label="Launcher one">✦</a>
-        <a class="launcher" href="#" title="Coming soon" aria-label="Launcher two">◆</a>
-        <a class="launcher" href="#" title="Coming soon" aria-label="Launcher three">▲</a>
+        <label class="launcher" for="panel-toggle-1" tabindex="0" title="Open" aria-label="Launcher one">✦</label>
+        <label class="launcher" for="panel-toggle-2" tabindex="0" title="Open" aria-label="Launcher two">◆</label>
+        <label class="launcher" for="panel-toggle-3" tabindex="0" title="Open" aria-label="Launcher three">▲</label>
     </div>
 
     <div class="nav-divider" aria-hidden="true"></div>
@@ -326,10 +408,52 @@
     </ul>
 </nav>
 
+<input type="checkbox" class="panel-toggle" id="panel-toggle-1">
+<div class="panel">
+    <div class="panel-bar">
+        <span class="panel-label">✦ Launcher one</span>
+        <label class="panel-close" for="panel-toggle-1" tabindex="0" aria-label="Close">✕</label>
+    </div>
+    <div class="panel-body">
+        <div>
+            <h2>Coming soon</h2>
+            <p>This launch slot is reserved for a future idea or project.</p>
+        </div>
+    </div>
+</div>
+
+<input type="checkbox" class="panel-toggle" id="panel-toggle-2">
+<div class="panel">
+    <div class="panel-bar">
+        <span class="panel-label">◆ Launcher two</span>
+        <label class="panel-close" for="panel-toggle-2" tabindex="0" aria-label="Close">✕</label>
+    </div>
+    <div class="panel-body">
+        <div>
+            <h2>Coming soon</h2>
+            <p>This launch slot is reserved for a future idea or project.</p>
+        </div>
+    </div>
+</div>
+
+<input type="checkbox" class="panel-toggle" id="panel-toggle-3">
+<div class="panel">
+    <div class="panel-bar">
+        <span class="panel-label">▲ Launcher three</span>
+        <label class="panel-close" for="panel-toggle-3" tabindex="0" aria-label="Close">✕</label>
+    </div>
+    <div class="panel-body">
+        <div>
+            <h2>Coming soon</h2>
+            <p>This launch slot is reserved for a future idea or project.</p>
+        </div>
+    </div>
+</div>
+
 <main id="top">
     <div>
         <h1>Manav Markos</h1>
-        <p class="tagline">Builder • Coder • Grower</p>
+        <p class="tagline">Software Engineer • AI • Builder</p>
     </div>
 </main>
 
@@ -337,10 +461,10 @@
 
 <div class="dock-wrap">
     <div class="dock" role="toolbar" aria-label="Quick actions">
-        <button class="dock-btn" id="btn-theme" title="Toggle light / dark">
-            <span class="ico" id="theme-ico">🌙</span><span class="label">Theme</span>
+        <button class="dock-btn" id="btn-print" title="Print / save as PDF">
+            <span class="ico">🖨️</span><span class="label">Print</span>
         </button>
-        <button class="dock-btn" id="btn-email" title="Copy my email">
+        <button class="dock-btn" id="btn-email" title="Copy email address">
             <span class="ico">✉️</span><span class="label">Email</span>
         </button>
         <button class="dock-btn" id="btn-link" title="Copy this page's link">
@@ -350,8 +474,8 @@
         <button class="dock-btn" id="btn-top" title="Scroll to top">
             <span class="ico">↑</span><span class="label">Top</span>
         </button>
-        <button class="dock-btn" id="btn-print" title="Print / PDF">
-            <span class="ico">🖨️</span><span class="label">Print</span>
+        <button class="dock-btn" id="btn-theme" title="Toggle light / dark theme">
+            <span class="ico" id="theme-ico">🌙</span><span class="label">Theme</span>
         </button>
     </div>
 </div>
@@ -386,7 +510,7 @@
     });
 
     // ---- Copy email ----
-    const EMAIL = "manavmarkos@gmail.com";
+    const EMAIL = "hello@manavmarkos.com"; // placeholder — update to your real address
     document.getElementById('btn-email').addEventListener('click', async () => {
         try{
             await navigator.clipboard.writeText(EMAIL);
@@ -420,6 +544,24 @@
     const navToggle = document.getElementById('nav-toggle');
     document.querySelectorAll('.nav-links a').forEach(a => {
         a.addEventListener('click', () => { navToggle.checked = false; });
+    });
+
+    // ---- Keyboard support for label-triggers (launchers + panel close) ----
+    document.querySelectorAll('label[tabindex]').forEach(label => {
+        label.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter' || e.key === ' '){
+                e.preventDefault();
+                label.click();
+            }
+        });
+    });
+
+    // ---- Escape closes any open panel ----
+    const panelToggles = document.querySelectorAll('.panel-toggle');
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape'){
+            panelToggles.forEach(t => { t.checked = false; });
+        }
     });
 })();
 </script>
