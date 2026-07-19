@@ -36,7 +36,7 @@
 
     a{ color:inherit; }
 
-    /* ---------- Nav ---------- */
+    /* ---------- Nav Bar ---------- */
     nav{
         position:fixed;
         top:0; left:0; right:0;
@@ -172,7 +172,7 @@
         outline-offset:2px;
     }
 
-    /* ---------- Launcher overlays ---------- */
+    /* ---------- Nav Overlays ---------- */
     .panel-toggle{ display:none; }
 
     .panel{
@@ -254,7 +254,7 @@
         .panel{ transition:none; }
     }
 
-    /* ---------- Hero ---------- */
+    /* ---------- MAIN ---------- */
     main{
         flex:1;
         display:flex;
@@ -276,7 +276,7 @@
         letter-spacing:.01em;
     }
 
-    /* ---------- Quick-select dock ---------- */
+    /* ---------- Quick Dock ---------- */
     .dock-wrap{
         position:fixed;
         left:0; right:0;
@@ -341,7 +341,7 @@
         margin:.4rem .1rem;
     }
 
-    /* toast for copy feedback */
+    /* copy feedback toast */
     .toast{
         position:fixed;
         bottom:5.5rem;
@@ -363,7 +363,7 @@
         transform:translateX(-50%) translateY(0);
     }
 
-    /* ---------- Light theme override ---------- */
+    /* ---------- Light Theme ---------- */
     body.light{
         --bg:#f4f4f2;
         --fg:#111111;
@@ -376,7 +376,7 @@
         color:#f4f4f2;
     }
 
-    /* ---------- Responsive ---------- */
+    /* ---------- Responsive? ---------- */
     @media (max-width:640px){
         h1{ font-size:2.2rem; }
         .nav-links{ left:1rem; right:1rem; min-width:0; }
@@ -390,9 +390,9 @@
 
 <nav>
     <div class="launchers" role="group" aria-label="Quick launch">
-        <label class="launcher" for="panel-toggle-1" tabindex="0" title="Open" aria-label="Launcher one">✦</label>
-        <label class="launcher" for="panel-toggle-2" tabindex="0" title="Open" aria-label="Launcher two">◆</label>
-        <label class="launcher" for="panel-toggle-3" tabindex="0" title="Open" aria-label="Launcher three">▲</label>
+        <label class="launcher" for="panel-toggle-1" tabindex="0" title="Open" aria-label="First">✦</label>
+        <label class="launcher" for="panel-toggle-2" tabindex="0" title="Open" aria-label="Second">◆</label>
+        <label class="launcher" for="panel-toggle-3" tabindex="0" title="Open" aria-label="Third">▲</label>
     </div>
 
     <div class="nav-divider" aria-hidden="true"></div>
@@ -404,19 +404,19 @@
         <li><a href="#top">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#work">Work</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Gallery</a></li>
     </ul>
 </nav>
 
 <input type="checkbox" class="panel-toggle" id="panel-toggle-1">
 <div class="panel">
     <div class="panel-bar">
-        <span class="panel-label">✦ Launcher one</span>
+        <span class="panel-label">✦ First</span>
         <label class="panel-close" for="panel-toggle-1" tabindex="0" aria-label="Close">✕</label>
     </div>
     <div class="panel-body">
         <div>
-            <h2>Coming soon</h2>
+            <h2>Coming soon !!</h2>
             <p>This launch slot is reserved for a future idea or project.</p>
         </div>
     </div>
@@ -425,7 +425,7 @@
 <input type="checkbox" class="panel-toggle" id="panel-toggle-2">
 <div class="panel">
     <div class="panel-bar">
-        <span class="panel-label">◆ Launcher two</span>
+        <span class="panel-label">◆ Second</span>
         <label class="panel-close" for="panel-toggle-2" tabindex="0" aria-label="Close">✕</label>
     </div>
     <div class="panel-body">
@@ -439,7 +439,7 @@
 <input type="checkbox" class="panel-toggle" id="panel-toggle-3">
 <div class="panel">
     <div class="panel-bar">
-        <span class="panel-label">▲ Launcher three</span>
+        <span class="panel-label">▲ Third</span>
         <label class="panel-close" for="panel-toggle-3" tabindex="0" aria-label="Close">✕</label>
     </div>
     <div class="panel-body">
@@ -452,8 +452,8 @@
 
 <main id="top">
     <div>
-        <h1>Manav Markos</h1>
-        <p class="tagline">Software Engineer • AI • Builder</p>
+        <h1>Manav Mani Markos</h1>
+        <p class="tagline">Builder • Coder • Grower</p>
     </div>
 </main>
 
@@ -493,7 +493,7 @@
         toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
     }
 
-    // ---- Theme toggle ----
+    // ---- Theme Toggle ----
     const themeBtn = document.getElementById('btn-theme');
     const themeIco = document.getElementById('theme-ico');
     function applyTheme(light){
@@ -501,7 +501,7 @@
         themeIco.textContent = light ? '☀️' : '🌙';
         themeBtn.classList.toggle('active', light);
     }
-    // in-memory only (no localStorage in this environment)
+
     let isLight = false;
     applyTheme(isLight);
     themeBtn.addEventListener('click', () => {
@@ -509,18 +509,18 @@
         applyTheme(isLight);
     });
 
-    // ---- Copy email ----
-    const EMAIL = "hello@manavmarkos.com"; // placeholder — update to your real address
+    // ---- Copy Email ----
+    const EMAIL = "manavmarkos@gmail.com";
     document.getElementById('btn-email').addEventListener('click', async () => {
         try{
             await navigator.clipboard.writeText(EMAIL);
-            showToast('Email copied');
+            showToast('Speak Soon!');
         }catch(e){
             showToast(EMAIL);
         }
     });
 
-    // ---- Copy link ----
+    // ---- Copy Link ----
     document.getElementById('btn-link').addEventListener('click', async () => {
         try{
             await navigator.clipboard.writeText(window.location.href);
@@ -530,7 +530,7 @@
         }
     });
 
-    // ---- Scroll to top ----
+    // ---- Scroll to Top ----
     document.getElementById('btn-top').addEventListener('click', () => {
         window.scrollTo({ top:0, behavior:'smooth' });
     });
@@ -540,7 +540,7 @@
         window.print();
     });
 
-    // ---- Close nav menu on link click ----
+    // ---- Close nav on link click ----
     const navToggle = document.getElementById('nav-toggle');
     document.querySelectorAll('.nav-links a').forEach(a => {
         a.addEventListener('click', () => { navToggle.checked = false; });
@@ -556,7 +556,7 @@
         });
     });
 
-    // ---- Escape closes any open panel ----
+    // ---- Escape closes any open panel now ----
     const panelToggles = document.querySelectorAll('.panel-toggle');
     document.addEventListener('keydown', (e) => {
         if(e.key === 'Escape'){
