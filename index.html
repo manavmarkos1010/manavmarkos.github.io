@@ -36,7 +36,7 @@
 
     a{ color:inherit; }
 
-    /* ---------- Nav ---------- */
+    /* ---------- Nav Bar ---------- */
     nav{
         position:fixed;
         top:0; left:0; right:0;
@@ -172,7 +172,7 @@
         outline-offset:2px;
     }
 
-    /* ---------- Hero ---------- */
+    /* ---------- MAIN ---------- */
     main{
         flex:1;
         display:flex;
@@ -194,7 +194,7 @@
         letter-spacing:.01em;
     }
 
-    /* ---------- Quick-select dock ---------- */
+    /* ---------- Quick Dock ---------- */
     .dock-wrap{
         position:fixed;
         left:0; right:0;
@@ -281,7 +281,7 @@
         transform:translateX(-50%) translateY(0);
     }
 
-    /* ---------- Light theme override ---------- */
+    /* ---------- Light Theme ---------- */
     body.light{
         --bg:#f4f4f2;
         --fg:#111111;
@@ -329,7 +329,7 @@
 <main id="top">
     <div>
         <h1>Manav Markos</h1>
-        <p class="tagline">Software Engineer • AI • Builder</p>
+        <p class="tagline">Builder • Coder • Grower</p>
     </div>
 </main>
 
@@ -337,10 +337,10 @@
 
 <div class="dock-wrap">
     <div class="dock" role="toolbar" aria-label="Quick actions">
-        <button class="dock-btn" id="btn-theme" title="Toggle light / dark theme">
+        <button class="dock-btn" id="btn-theme" title="Toggle light / dark">
             <span class="ico" id="theme-ico">🌙</span><span class="label">Theme</span>
         </button>
-        <button class="dock-btn" id="btn-email" title="Copy email address">
+        <button class="dock-btn" id="btn-email" title="Copy my email">
             <span class="ico">✉️</span><span class="label">Email</span>
         </button>
         <button class="dock-btn" id="btn-link" title="Copy this page's link">
@@ -350,7 +350,7 @@
         <button class="dock-btn" id="btn-top" title="Scroll to top">
             <span class="ico">↑</span><span class="label">Top</span>
         </button>
-        <button class="dock-btn" id="btn-print" title="Print / save as PDF">
+        <button class="dock-btn" id="btn-print" title="Print / PDF">
             <span class="ico">🖨️</span><span class="label">Print</span>
         </button>
     </div>
@@ -386,7 +386,7 @@
     });
 
     // ---- Copy email ----
-    const EMAIL = "hello@manavmarkos.com"; // placeholder — update to your real address
+    const EMAIL = "manavmarkos@gmail.com";
     document.getElementById('btn-email').addEventListener('click', async () => {
         try{
             await navigator.clipboard.writeText(EMAIL);
